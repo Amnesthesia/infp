@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :user
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable,
+         :trackable, :validatable, :omniauthable, :confirmable,
          :omniauth_providers => [:reddit, :facebook, :twitter, :tumblr]
 
   TEMP_EMAIL_PREFIX = 'change@me'
