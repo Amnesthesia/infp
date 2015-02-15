@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
               name: auth.extra.raw_info.name,
               password: Devise.friendly_token[0,20],
               email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-              auto_share: true,
               provider: auth.provider,
               uid: auth.uid
           )
