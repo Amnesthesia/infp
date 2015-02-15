@@ -20,6 +20,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+      redirect_to root_path unless user_signed_in?
+      @user = current_user
   end
 
   # POST /users
@@ -66,9 +68,9 @@ class UsersController < ApplicationController
   def finish
     if request.patch? && params[:user]
         if current_user.update(user_params)
-            current_user.skip_reconfirmation! unless !current_user.identity.nil? and current_user.identity.provider == 'twitter'
+            current_user.skip_reconfirmation! unless !current_user.nil? and current_user.identity.provider == 'twitter'
             sign_in(current_user, bypass: true)
-            redirect_to dashboard_path, notice: 'Your profile was successfully updated'
+            redirect_to users_path, notice: 'Your profile was successfully updated'
         else
             @show_errors = true
         end
