@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/bkeepers/dotenv.git
+  revision: 434713e930199c0107d66b956b23304df21edafb
+  specs:
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
+
+GIT
   remote: git://github.com/jackdempsey/omniauth-reddit.git
   revision: 4e54423f2d8a000e010998b53fa653adb7137baa
   specs:
@@ -72,9 +80,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    dotenv (1.0.2)
-    dotenv-rails (1.0.2)
-      dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.3.0)
     faraday (0.9.1)
@@ -106,6 +111,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql (2.9.1)
     neat (1.7.1)
       bourbon (>= 4.0)
       sass (>= 3.3)
@@ -137,6 +143,8 @@ GEM
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
+    puma (2.11.1)
+      rack (>= 1.1, < 2.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -221,16 +229,18 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
-  dotenv-rails
+  dotenv-rails!
   foundation-icons-sass-rails
   jbuilder (~> 2.0)
   jquery-rails
+  mysql
   neat
   omniauth
   omniauth-facebook
   omniauth-reddit!
   omniauth-tumblr
   omniauth-twitter
+  puma
   rails (= 4.2.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
