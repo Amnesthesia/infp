@@ -25,7 +25,8 @@ class User < ActiveRecord::Base
               password: Devise.friendly_token[0,20],
               email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
               provider: auth.provider,
-              uid: auth.uid
+              uid: auth.uid,
+              is_admin: false
           )
           user.skip_confirmation!
           user.save!
