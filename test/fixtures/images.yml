@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path: 
+  profile_picture: 
+  resource_id: 
+  resource_type: Resource
+
+two:
+  path: 
+  profile_picture: 
+  resource_id: 
+  resource_type: Resource

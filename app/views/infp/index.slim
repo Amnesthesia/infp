@@ -1,0 +1,12 @@
+- content_for :header
+    h1
+    .action-buttons
+
+        = link_to user_omniauth_authorize_path(:reddit) do
+            i.fi-social-reddit
+        = link_to user_omniauth_authorize_path(:facebook) do
+            i.fi-social-facebook
+        = link_to user_omniauth_authorize_path(:tumblr) do
+            i.fi-social-tumblr
+        = link_to user_omniauth_authorize_path(:twitter) do
+            i.fi-social-twitter
