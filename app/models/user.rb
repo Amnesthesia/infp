@@ -44,4 +44,9 @@ class User < ActiveRecord::Base
 
     end
 
+    # Check if email has been verified by oauth
+    def email_verified?
+      self.email && self.email !~ TEMP_EMAIL_REGEX
+    end
+
 end
