@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
           user = User.new(
               name: auth.extra.raw_info.name,
               password: Devise.friendly_token[0,20],
-              role: role,
               email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
               auto_share: true,
               provider: auth.provider,
