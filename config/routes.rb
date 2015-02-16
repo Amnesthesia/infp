@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { omniauth_callbacks: 'omniauth_callbacks', sessions: 'session' }
 
-  resources :users
+  resources :users do
+      get :finish
+      post :finish
+  end
 
   get 'infp/index'
 
   get 'auth/:provider/callback', to: 'users#create'
+
 
   root 'infp#index'
 

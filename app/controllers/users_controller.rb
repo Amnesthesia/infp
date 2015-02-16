@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to edit_user_path, notice: 'User was successfully created.' }
+        format.html { redirect_to user_finish_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -68,9 +68,9 @@ class UsersController < ApplicationController
   def finish
     if request.patch? && params[:user]
         if current_user.update(user_params)
-            current_user.skip_reconfirmation! unless !current_user.nil? and current_user.identity.provider == 'twitter'
+            current_user.skip_reconfirmation! unless !current_user.nil? and current_user.provider == 'twitter' or current_user.provider == 'reddit'
             sign_in(current_user, bypass: true)
-            redirect_to users_path, notice: 'Your profile was successfully updated'
+            redirect_to users_path, notice: 'You\'re all set!'
         else
             @show_errors = true
         end
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :partner_id)
+      params.require(:user).permit(:username, :email, :partner_id, :address, :zipcode, :country)
     end
 
 
