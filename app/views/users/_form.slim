@@ -1,8 +1,8 @@
 == "Form for #{@user.name} here"
 = form_for(@user) do |f|
     div.field
-        = f.label :username
-        = f.text_field :username
+        = f.label :name
+        = f.text_field :name
 
     div.field
         = f.label :email
@@ -21,7 +21,7 @@
         = f.text_field :country
 
     div.actions
-        = f.submit
+        = f.submit "Finish"
 
     - if @user.errors.any?
         #error_explanation
