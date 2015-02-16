@@ -7,11 +7,17 @@ html
         title="INFP Pen pal pool"
 
     body
-        header
-            .wrapper
-                .content
-                    = yield :header
+        - if params[:action] == "show" and params[:controller] == "users"
+            header.empty
+                .wrapper
+                    .content
+                        = yield :header
+        - else
+            header
+                .wrapper
+                    .content
+                        = yield :header
         main
-            .wrapper
+            .wrapper(class==params[:controller]+"-"+params[:action])
                 .content
                     = yield

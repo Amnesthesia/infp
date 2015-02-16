@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   def self.find_for_oauth(auth, signed_in_resource=nil)
 
     img = Image.where(path: auth.info.image||auth.info.avatar, profile_picture: true).first_or_create
-    user = signed_in_resource ? signed_in_resource : User.where(email: "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com").first
+    user = signed_in_resource ? signed_in_resource : User.where(uid: auth.uid, provider: auth.provider).first
     email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
     email = auth.info.email if email_is_verified
     user = User.where(email: email).first if email

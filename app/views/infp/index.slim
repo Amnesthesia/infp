@@ -1,8 +1,12 @@
-= if user_signed_in?
-    h1== "Logged in as #{current_user.name}"
+
+- if user_signed_in?
+    h1
+    = "Logged in as #{current_user.name}"
 
 - content_for :header
     h1
+
+- unless user_signed_in?
     .action-buttons
 
         = link_to user_omniauth_authorize_path(:reddit) do

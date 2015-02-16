@@ -1,16 +1,32 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:edit, :update, :destroy, :finish]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :finish, :index]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if user_signed_in? and current_user.is_admin?
+        @users = User.all
+    else
+        redirect_to user_path(current_user)
+    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+      # Only allow showing users own page
+      # and users match's page
+      if user_signed_in?
+          if current_user.id != params[:id].to_i and current_user.user.nil?
+              redirect_to user_path(current_user)
+          elsif !current_user.user.nil? and current_user.user.id != params[:id].to_i
+              puts "Redirecting nao"
+              redirect_to user_path(current_user.user)
+          end
+      else
+          redirect_to root_path
+      end
   end
 
   # GET /users/new
@@ -39,6 +55,18 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def match
+      redirect_to root_path unless user_signed_in? and current_user.is_admin?
+      u = User.all
+
+      u.each do |user|
+          user.user = User.where(user_id: nil).order('RANDOM()').first
+          user.save
+      end
+
+      redirect_to users_path
   end
 
   # PATCH/PUT /users/1
@@ -92,7 +120,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :partner_id, :address, :zipcode, :country)
+      params.require(:user).permit(:username, :email, :address, :zipcode, :country, :city, :gender)
     end
 
 

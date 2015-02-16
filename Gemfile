@@ -17,8 +17,14 @@ gem 'omniauth-tumblr'
 gem 'omniauth-twitter'
 gem 'slim'
 gem 'bourbon'
+gem 'bitters'
 gem 'neat'
+gem 'refills'
 gem 'foundation-icons-sass-rails'
+gem 'inline_svg'
+
+# Country selection
+gem 'country_select', github: 'stefanpenner/country_select'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

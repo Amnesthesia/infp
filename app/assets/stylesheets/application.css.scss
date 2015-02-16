@@ -13,9 +13,15 @@
  *= require_self
  */
 
-@import 'bourbon';
+@import 'bourbon/bourbon';
+@import 'base/base';
 @import 'neat';
 @import 'foundation-icons';
+@import 'refills/tables';
+@import 'refills/side-image';
+@import 'refills/flashes';
+@import 'refills/dropdown';
+
 
 $lightBlue: #5f99cf;
 $blue: #336699;
@@ -23,8 +29,9 @@ $white: #eff7ff;
 
 body
 {
-    margin: 0;
-    padding: 0;
+    margin: 20px;
+    padding: 20px;
+    font-size: 130%;
 
     header
     {
@@ -33,18 +40,97 @@ body
         margin: 0;
         margin-top: 200px;
         background: $white;
+        background-image: image-url("vectorenvelope.png");
+        background-position: center center;
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+
+        &.empty
+        {
+            background: none;
+        }
+        .content
+        {
+
+        }
+    }
+
+    header > .wrapper, main > .wrapper
+    {
+        @include outer-container();
 
         .content
         {
             @include span-columns(8);
             @include shift(2);
-
             h1
             {
                 font-family: monospace;
                 line-height: 1.5;
                 color: #555;
                 font-size: xx-large;
+                height: 100px;
+            }
+
+            .userinfo
+            {
+                margin-top: -100px;
+                .mail
+                {
+                    margin-top: 30px;
+                    background-image: image-url("envelope.jpg");
+                    height: 400px;
+                    background-size: 100% auto;
+                    background-repeat: no-repeat;
+
+                    .address
+                    {
+                        .name
+                        {
+                            font-weight: bold;
+                        }
+                        @include span-columns(5);
+                        float: right;
+                        margin-top: 30%;
+                        font-weight: normal;
+                        font-size: 1.2em;
+                    }
+                }
+            }
+        }
+    }
+
+    main
+    {
+        .wrapper
+        {
+            @include outer-container();
+
+        }
+        .content
+        {
+            @include span-columns(8);
+            @include shift(2);
+            h1
+            {
+                font-family: monospace;
+                line-height: 1.5;
+                color: #555;
+                font-size: xx-large;
+            }
+
+            a.match-users
+            {
+                font-size: 10em;
+                margin: auto auto;
+                text-align: center;
+                margin-left: 40%;
+            }
+
+
+            .field > input[type="submit"]
+            {
+                float: right;
             }
 
             .action-buttons
@@ -65,12 +151,15 @@ body
 
             }
         }
-    }
 
-    header > .wrapper, main > .wrapper
-    {
-        @include outer-container();
-
+        .users-index
+        {
+            .content
+            {
+                @include span-columns(12);
+                @include shift(0);
+            }
+        }
     }
 
 }

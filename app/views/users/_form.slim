@@ -1,31 +1,37 @@
-== "Form for #{@user.name} here"
 = form_for(@user) do |f|
     div.field
         = f.label :name
-        = f.text_field :name
+        = f.text_field :name, required: true
 
     div.field
         = f.label :email
-        = f.text_field :email
+        = f.text_field :email, required: true
 
     div.field
-        = f.label :address
-        = f.text_field :address
+        = f.label :street
+        = f.text_field :address, required: true
 
     div.field
         = f.label :zipcode
-        = f.text_field :zipcode
+        = f.text_field :zipcode, required: true
+
+    div.field
+        = f.label :city
+        = f.text_field :city, required: true
 
     div.field
         = f.label :country
-        = f.text_field :country
+        = f.country_select("country", priority_countries: ["US", "GB", "FR", "DE"], required: true)
+
+    div.field.radio
+        = f.select :gender, options_for_select(['Male', 'Female', 'Cybernetic Organism'])
 
     div.actions
         = f.submit "Finish"
 
     - if @user.errors.any?
-        #error_explanation
-        h2== pluralize(@user.errors.count, "error")
+        .flash-error
+        span== pluralize(@user.errors.count, "error")
             | prohibited this user from being saved
         ul
         - @user.errors.full_messages.each do |message|

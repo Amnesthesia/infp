@@ -1,0 +1,34 @@
+#notice
+    = notice
+- content_for :header
+    .userinfo
+        p.title
+            = "You're signed in as #{@user.name} via #{@user.provider.capitalize}"
+
+        - if @user == current_user and user.user.nil?
+            p.details
+                | You haven't been matched with a penpal yet, because we're still collecting registrations.
+                br
+                br
+                | Your future penpal will be informed to send letters to:
+
+            .mail
+                .address
+                    .name==@user.name
+                    .street==@user.address
+                    .zipcity==@user.zipcode + " " + (@user.city || "No city")
+                    .country==ISO3166::Country[@user.country].name.upcase()
+
+            .edit
+                = link_to 'Edit', edit_user_path(@user)
+        - else
+
+            p.details
+                = "You've been matched with #{@user.name}! Send a letter to:"
+
+            .mail
+                .address
+                    .name==@user.name
+                    .street==@user.address
+                    .zipcity==@user.zipcode + " " + (@user.city || "No city")
+                    .country==ISO3166::Country[@user.country].name.upcase()

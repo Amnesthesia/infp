@@ -1,0 +1,18 @@
+= link_to match_path, class: 'match-users' do
+    i.fi-refresh.match-users
+
+table.tables
+    thead
+        th="ID"
+        th="Name"
+        th="Email"
+        th="Country"
+        th="Match"
+    tbody
+    - @users.each do |user|
+        tr
+            td== user.id.to_s
+            td== user.name
+            td== user.email
+            td== ISO3166::Country[user.country].name.upcase()
+            td== if user.user.nil? then "None" else user.user.name

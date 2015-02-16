@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get 'auth/:provider/callback', to: 'users#create'
 
+  get 'match', to: 'users#match'
+
 
   root 'infp#index'
 
