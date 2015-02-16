@@ -1,5 +1,5 @@
 == "Form for #{@user.name} here"
-- form_for(@user) do |f|
+= form_for(@user) do |f|
     div.field
         = f.label :username
         = f.text_field :username
@@ -22,7 +22,7 @@
 
     div.actions
         = f.submit
-        
+
     - if @user.errors.any?
         #error_explanation
         h2== pluralize(@user.errors.count, "error")
