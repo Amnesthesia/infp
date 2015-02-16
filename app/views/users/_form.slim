@@ -1,3 +1,4 @@
+== "Form for #{@user.name} here"
 - form_for(@user) do |f|
     - if @user.errors.any?
         #error_explanation
@@ -6,6 +7,7 @@
         ul
         - @user.errors.full_messages.each do |message|
             li== message
+
     div.field
         = f.label :username
         = f.text_field :username
