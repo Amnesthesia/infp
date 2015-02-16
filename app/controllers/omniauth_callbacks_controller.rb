@@ -4,7 +4,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
       # Eval this code because we have to adapt to what provider we're using, and
       # arrays and methods are different depending on the name of the provider
-      # So, what we do is make a dynamic method here, that creates 2 different ones
+      # So, what we do is make a dynamic method here, that creates 4 different ones
       # with one for each provider specified below
       class_eval %Q{
           def #{provider}
