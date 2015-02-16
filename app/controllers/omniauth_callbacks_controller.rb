@@ -8,6 +8,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # with one for each provider specified below
       class_eval %Q{
           def #{provider}
+              puts env["omniauth.auth"].to_json
               @user = User.find_for_oauth(env["omniauth.auth"], current_user)
 
               if @user.persisted?
