@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :user
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :trackable, :validatable, :omniauthable, :confirmable,
+  devise :database_authenticatable, :trackable, :validatable, :omniauthable, :confirmable,
          :omniauth_providers => [:reddit, :facebook, :twitter, :tumblr]
 
   TEMP_EMAIL_PREFIX = 'change@me'
@@ -10,7 +9,7 @@ class User < ActiveRecord::Base
   has_one :profile_picture, -> {where profile_picture: true}, class_name: 'Image', as: 'resource'
 
   def self.find_for_oauth(auth, signed_in_resource=nil)
-
+    puts auth.to_json
     img = Image.where(path: auth.info.image||auth.info.avatar, profile_picture: true).first_or_create
     user = signed_in_resource ? signed_in_resource : User.where(uid: auth.uid, provider: auth.provider).first
     email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
