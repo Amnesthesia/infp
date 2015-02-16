@@ -2,10 +2,10 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  config.omniauth :facebook, "377325242446962", "6f6a84204e078d77cb2cf8f8d85f378d"
-  config.omniauth :twitter, "SIyL4U8vDMTdF4JksOhhgxu2U", "y5ci8Ri1EwFeoE801ZlqRUhlhanS9mTy35F5eVgV9QMUIOCeQ2"
-  config.omniauth :tumblr, "vEoie43NiHirSa7K5N5d0j1BZtcLb8uC1uBiyizvNG8xzOI6cW", "apu6nVVOLHV7sORwIrICMVKMPA8QBezUgHfN7BSEm0UAPVM27t"
-  config.omniauth :reddit, "mP60e63sOvpSTw", "6p8APJmUFDlQ_-DtnxsIe1nKlsw", {scope: 'read,identity'}
+  config.omniauth :facebook, ENV["FB_API_KEY"], ENV["FB_API_SECRET"]
+  config.omniauth :twitter, ENV["TWITTER_API_KEY"], ENV["TWITTER_API_SECRET"]
+  config.omniauth :tumblr, ENV["TUMBLR_API_KEY"], ENV["TUMBLR_API_SECRET"]
+  config.omniauth :reddit, ENV["REDDIT_API_KEY"], ENV["REDDIT_API_SECRET"], {scope: 'read,identity'}
 
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
