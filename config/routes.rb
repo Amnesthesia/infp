@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users do
       get :finish
       post :finish
+      get 'auth/:provider/callback', to: 'users#create'
   end
 
   get 'infp/index'

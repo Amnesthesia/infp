@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    puts auth_hash.to_json
     @user = User.find_or_create_from_auth_hash(auth_hash)
     self.current_user = @user
 
