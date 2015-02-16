@@ -66,6 +66,7 @@ class UsersController < ApplicationController
   end
 
   def finish
+    @user = current_user
     if request.patch? && params[:user]
         if current_user.update(user_params)
             current_user.skip_reconfirmation! unless !current_user.nil? and current_user.provider == 'twitter' or current_user.provider == 'reddit'
