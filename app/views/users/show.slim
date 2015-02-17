@@ -5,7 +5,7 @@
         p.title
             = "You're signed in as #{@user.name} via #{@user.provider.capitalize}"
 
-        - if @user == current_user and user.user.nil?
+        - if @user == current_user and @user.user.nil?
             p.details
                 | You haven't been matched with a penpal yet, because we're still collecting registrations.
                 br

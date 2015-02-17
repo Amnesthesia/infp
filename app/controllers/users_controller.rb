@@ -63,8 +63,11 @@ class UsersController < ApplicationController
       u = User.all
 
       u.each do |user|
-          user.user = User.where(user_id: nil).order('RANDOM()').first
+          match = User.where(user_id: nil).order('RANDOM()').first
+          user.user = match
           user.save
+          match.user = user
+          match.save
       end
 
       redirect_to users_path
