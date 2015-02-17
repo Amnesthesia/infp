@@ -14,5 +14,5 @@ table.tables
             td== user.id.to_s
             td== user.name
             td== user.email
-            td== ISO3166::Country[user.country].name.upcase()
+            td== if user.country.nil? then 'N/A' else ISO3166::Country[user.country].name.upcase()
             td== if user.user.nil? then "None" else user.user.name

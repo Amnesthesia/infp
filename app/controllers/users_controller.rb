@@ -63,7 +63,7 @@ class UsersController < ApplicationController
       u = User.all
 
       u.each do |user|
-          match = User.where(user_id: nil).order('RANDOM()').first
+          match = User.where(user_id: nil).order('RAND()').first
           user.user = match
           user.save
           match.user = user
